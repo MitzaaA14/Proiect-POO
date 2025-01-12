@@ -1,2 +1,34 @@
-5
-11 22 33 44 55
+melodii:
+melodie1
+robby 
+55
+melodie2
+robby 
+55
+melodie3
+robby 
+55
+melodie4
+robby 
+55
+melodie5
+robby 
+55
+melodie6
+robby 
+55
+ascultator: a1
+true
+1
+2
+3
+ascultator:a2
+false
+4
+
+1
+ascultator:a3
+false
+1
+2
+4
