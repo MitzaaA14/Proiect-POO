@@ -1,0 +1,3 @@
+#ifndef OOP_RECOMANDARI_H
+#define OOP_RECOMANDARI_H
+#endif

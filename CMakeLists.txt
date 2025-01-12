@@ -128,7 +128,17 @@ FetchContent_MakeAvailable(googletest)
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
-add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES})
+add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES}
+        include/ascultator.h
+        include/common.h
+        include/container.h
+        include/melodie.h
+        include/recomandari.h
+        include/spotify.h
+        src/ascultator.cpp
+        src/melodie.cpp
+        src/spotify.cpp
+        src/recomandari.cpp)
 
 include(cmake/CompilerFlags.cmake)
 ###############################################################################
