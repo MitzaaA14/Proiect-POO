@@ -1,48 +1,87 @@
 #include <iostream>
-#include <array>
+#include "spotify.h"
 
 int main() {
-    std::cout << "Hello, world!\n";
-    std::array<int, 100> v{};
-    int nr;
-    std::cout << "Introduceți nr: ";
-    /////////////////////////////////////////////////////////////////////////
-    /// Observație: dacă aveți nevoie să citiți date de intrare de la tastatură,
-    /// dați exemple de date de intrare folosind fișierul tastatura.txt
-    /// Trebuie să aveți în fișierul tastatura.txt suficiente date de intrare
-    /// (în formatul impus de voi) astfel încât execuția programului să se încheie.
-    /// De asemenea, trebuie să adăugați în acest fișier date de intrare
-    /// pentru cât mai multe ramuri de execuție.
-    /// Dorim să facem acest lucru pentru a automatiza testarea codului, fără să
-    /// mai pierdem timp de fiecare dată să introducem de la zero aceleași date de intrare.
-    ///
-    /// Pe GitHub Actions (bife), fișierul tastatura.txt este folosit
-    /// pentru a simula date introduse de la tastatură.
-    /// Bifele verifică dacă programul are erori de compilare, erori de memorie și memory leaks.
-    ///
-    /// Dacă nu puneți în tastatura.txt suficiente date de intrare, îmi rezerv dreptul să vă
-    /// testez codul cu ce date de intrare am chef și să nu pun notă dacă găsesc vreun bug.
-    /// Impun această cerință ca să învățați să faceți un demo și să arătați părțile din
-    /// program care merg (și să le evitați pe cele care nu merg).
-    ///
-    /////////////////////////////////////////////////////////////////////////
+    std::cout << "Spotify, recomandari melodii!\n";
+
+    int nr, melodiiAscultate;
+    std::string ascultator, esteVip;
+
+    std::cout << "Cate melodii introduceti?: ";
+
     std::cin >> nr;
-    /////////////////////////////////////////////////////////////////////////
+    std::cin.ignore();
+
+    Spotify* sp = Spotify::Instance();
+
     for(int i = 0; i < nr; ++i) {
-        std::cout << "v[" << i << "] = ";
-        std::cin >> v[i];
+        std::string melodie, autor;
+        int durata;
+
+        std::cout << "Melodie:\n";
+        getline(std::cin, melodie);
+
+        std::cout << "Autor:\n";
+        getline(std::cin, autor);
+
+        std::cout << "Durata (s):\n";
+        std::cin >> durata;
+        std::cin.ignore();
+
+        sp->addMelodie(Melodie(melodie, autor, durata));
     }
-    std::cout << "\n\n";
-    std::cout << "Am citit de la tastatură " << nr << " elemente:\n";
+
+    sp->getMelodii().print();
+
+    std::cout << "\nCati utilizatori introduceti?: ";
+    std::cin >> nr;
+    std::cin.ignore();
+
     for(int i = 0; i < nr; ++i) {
-        std::cout << "- " << v[i] << "\n";
+        std::cout << "Ascultator:\n";
+        getline(std::cin, ascultator);
+
+        std::cout << "este vip? (da/nu):\n";
+        getline(std::cin, esteVip);
+
+        bool esteVipBool = esteVip.compare("da") == 0;
+        Ascultator a = Ascultator(ascultator, esteVipBool);
+
+        std::cout << "Cate melodii a ascultat?: \n";
+
+        std::cin >> melodiiAscultate;
+        std::cin.ignore();
+
+        std::cout << "ID melodie (de mai sus)?:\n";
+        int idMelodie;
+        for(int mi = 0; mi < melodiiAscultate; ++mi) {
+            std::cout << "ID ascultare nr " << mi+1 << ": ";
+            std::cin >> idMelodie;
+            std::cin.ignore();
+
+            std::optional<Melodie> m = sp->getMelodii().cautaId(idMelodie);
+            if (!m.has_value()) {
+                mi--;
+                std::cout << "Melodia cu id: " << idMelodie << " nu a fost gasita\n";
+                continue;
+            }
+
+            a.asculta(*m);
+        }
+
+        sp->addAscultator(a);
     }
-    ///////////////////////////////////////////////////////////////////////////
-    /// Pentru date citite din fișier, NU folosiți tastatura.txt. Creați-vă voi
-    /// alt fișier propriu cu ce alt nume doriți.
-    /// Exemplu:
-    /// std::ifstream fis("date.txt");
-    /// for(int i = 0; i < nr2; ++i)
-    ///     fis >> v2[i];
+
+    auto ascultatori = sp->getAscultatori();
+    Ascultator a;
+
+    std::cout << "\n\n================================================================\nrezultate \n";
+
+    while(ascultatori >> a) {
+        a.print();
+    }
+
+    sp->printStatistici();
+
     return 0;
 }
