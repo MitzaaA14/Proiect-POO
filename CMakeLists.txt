@@ -138,7 +138,8 @@ add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES}
         src/ascultator.cpp
         src/melodie.cpp
         src/spotify.cpp
-        src/recomandari.cpp)
+        src/recomandari.cpp
+        include/melodiiascultate.h)
 
 include(cmake/CompilerFlags.cmake)
 ###############################################################################
