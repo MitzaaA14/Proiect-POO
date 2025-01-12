@@ -1,6 +1,7 @@
-#include "ascultator.h"
-void Ascultator::print() {
+#include "melodie.h"
+void Melodie::print() {
     std::cout << "ID: " << getId()
               << " - Nume: " << getNume()
-              << " (isVIP: " << isVIP << ")\n";
+              << " (album: " << autor
+              << ") : " << durataSecunde << "s\n";
 };

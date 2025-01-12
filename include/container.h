@@ -4,7 +4,6 @@
 #include <type_traits>
 #include <optional>
 #include "common.h"
-
 template <typename T>
 concept DerivatDinNume = std::is_base_of_v<Nume, T>;
 template <DerivatDinNume T>

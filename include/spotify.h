@@ -3,7 +3,6 @@
 #include "container.h"
 #include "melodie.h"
 #include "ascultator.h"
-
 class Spotify {
 private:
     Spotify() {};

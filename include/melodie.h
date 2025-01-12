@@ -1,10 +1,10 @@
 #ifndef OOP_MELODIE_H
 #define OOP_MELODIE_H
-
 #include <iostream>
 #include "common.h"
 
 class Melodie: public Nume {
+
 private:
     std::string autor;
     int durataSecunde;
