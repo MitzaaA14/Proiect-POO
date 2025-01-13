@@ -6,28 +6,28 @@
 #include "ascultator.h"
 
 class Spotify {
-private:
-    Spotify() {};
+    private:
+        Spotify() {};
 
-    Spotify(const Spotify&) = delete;
-    Spotify& operator=(const Spotify&) = delete;
+        Spotify(const Spotify&) = delete;
+        Spotify& operator=(const Spotify&) = delete;
 
-    static Spotify* instance;
+        static Spotify* instance;
+    
 
+        Container<Melodie> melodii;
+        Container<Ascultator> ascultatori;
+    public:
 
-    Container<Melodie> melodii;
-    Container<Ascultator> ascultatori;
-public:
+        static Spotify* Instance();
 
-    static Spotify* Instance();
+        const Container<Melodie>& getMelodii() const { return melodii; };
+        const Container<Ascultator>& getAscultatori() const { return ascultatori; };
 
-    const Container<Melodie>& getMelodii() const { return melodii; };
-    const Container<Ascultator>& getAscultatori() const { return ascultatori; };
+        void addMelodie(const Melodie& m) { melodii << m; };
+        void addAscultator(const Ascultator& a) { ascultatori << a; };
 
-    void addMelodie(const Melodie& m) { melodii << m; };
-    void addAscultator(const Ascultator& a) { ascultatori << a; };
-
-    void printStatistici();
+        void printStatistici();
 };
 
 #endif

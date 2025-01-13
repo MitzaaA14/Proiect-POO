@@ -24,7 +24,7 @@ public:
         if (element.getId() == 0) {
             const_cast<T&>(element).setId(++current_id);
         }
-
+        
         data.push_back(element);
         return *this;
     }
@@ -59,7 +59,7 @@ public:
         });
 
         if (it != data.end()) {
-            return *it;
+            return *it; 
         }
         return std::nullopt;
     }
@@ -70,10 +70,10 @@ public:
         });
 
         if (it != data.end()) {
-            return *it;
+            return *it; 
         }
         return std::nullopt;
-    }
+    }    
 
     void print() const {
         for(auto item : data) {

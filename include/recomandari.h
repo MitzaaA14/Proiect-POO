@@ -8,16 +8,16 @@
 class Ascultator;
 
 class Recomandari {
-private:
-    Container<Melodie> melodiiAscultate;
-public:
-    virtual ~Recomandari() {}
-    void asculta(const Melodie& m);
-    Container<Melodie> getMelodiiAscultate() {
-        melodiiAscultate.resetIterator();
-        return melodiiAscultate;
-    }
-    void printRecomandari();
+    private:
+        Container<Melodie> melodiiAscultate;
+    public:
+        virtual ~Recomandari() {}
+        void asculta(const Melodie& m);
+        Container<Melodie> getMelodiiAscultate() { 
+            melodiiAscultate.resetIterator();
+            return melodiiAscultate; 
+        }
+        void printRecomandari();
 };
 
 
