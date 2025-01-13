@@ -3,7 +3,7 @@
 
 int main() {
     std::cout << "Spotify, recomandari melodii!\n";
-
+    
     int nr, melodiiAscultate;
     std::string ascultator, esteVip;
 
@@ -12,19 +12,19 @@ int main() {
     std::cin >> nr;
     std::cin.ignore();
 
-    Spotify* sp = Spotify::Instance();
+    Spotify* sp = Spotify::Instance(); 
 
     for(int i = 0; i < nr; ++i) {
         std::string melodie, autor;
         int durata;
-
+        
         std::cout << "Melodie:\n";
         getline(std::cin, melodie);
-
+        
         std::cout << "Autor:\n";
         getline(std::cin, autor);
 
-        std::cout << "Durata (s):\n";
+        std::cout << "Durata (s):\n";        
         std::cin >> durata;
         std::cin.ignore();
 
@@ -40,7 +40,7 @@ int main() {
     for(int i = 0; i < nr; ++i) {
         std::cout << "Ascultator:\n";
         getline(std::cin, ascultator);
-
+        
         std::cout << "este vip? (da/nu):\n";
         getline(std::cin, esteVip);
 
@@ -57,9 +57,9 @@ int main() {
         for(int mi = 0; mi < melodiiAscultate; ++mi) {
             std::cout << "ID ascultare nr " << mi+1 << ": ";
             std::cin >> idMelodie;
-            std::cin.ignore();
+            std::cin.ignore();  
 
-            std::optional<Melodie> m = sp->getMelodii().cautaId(idMelodie);
+            std::optional<Melodie> m = sp->getMelodii().cautaId(idMelodie);          
             if (!m.has_value()) {
                 mi--;
                 std::cout << "Melodia cu id: " << idMelodie << " nu a fost gasita\n";
@@ -67,7 +67,7 @@ int main() {
             }
 
 
-
+            
             a.asculta(*m);
         }
 
