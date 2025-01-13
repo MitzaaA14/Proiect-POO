@@ -20,6 +20,12 @@ public:
     int getId() const { return id; }
 
     virtual void print() = 0;
+    bool operator<(const Nume& altul) const {
+        return getId() < altul.getId();
+    }
+    bool operator==(const Nume& altul) const {
+        return getId() == altul.getId();
+    }
 };
 
 #endif

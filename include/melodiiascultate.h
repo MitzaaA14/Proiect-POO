@@ -50,11 +50,13 @@ public:
 
     MelodiiAscultate& operator+=(const Melodie& melodie) {
         for (auto& recomandare : recomandri) {
-            if (recomandare.getMelodie().getNume() == melodie.getNume()) {
+            if (recomandare.getMelodie().getId() == melodie.getId()) {
                 ++recomandare;
+
                 return *this;
             }
         }
+
         recomandri.emplace_back(melodie, scorInitial);
         return *this;
     }

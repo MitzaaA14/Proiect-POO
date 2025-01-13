@@ -8,15 +8,18 @@ void Recomandari::printRecomandari() {
 
     MelodiiAscultate rc;
 
-    Container<Ascultator> ascultatori = Spotify::Instance()->getAscultatori();
-    Ascultator altAscultator;
-    Melodie melodieAscultata;
-
-    ascultatori.resetIterator();
+    Melodie melodieAscultata; //adaugare melodii ascultate de ascultatorul curent (+1)
     melodiiAscultate.resetIterator();
-
     while(melodiiAscultate >> melodieAscultata) {
         rc += melodieAscultata;
+    }
+
+    //adaugam +2 daca ascultatorul este altul
+    Container<Ascultator> ascultatori = Spotify::Instance()->getAscultatori();
+    Ascultator altAscultator;
+
+    for(auto m : melodiiAscultate.getUnice() ) {
+        ascultatori.resetIterator();
 
         while(ascultatori >> altAscultator) {
             bool acelasiAscultator = ascultatorCurent->getId() == altAscultator.getId();
@@ -27,11 +30,10 @@ void Recomandari::printRecomandari() {
             Container<Melodie> melodiiAltAscultator = altAscultator.getMelodiiAscultate();
             melodiiAltAscultator.resetIterator();
 
-            std::optional<Melodie>  melodieAltAscultator = melodiiAltAscultator.cautaId(melodieAscultata.getId());
-
+            std::optional<Melodie>  melodieAltAscultator = melodiiAltAscultator.cautaId(m.getId());
             if (melodieAltAscultator.has_value()) {
-                rc += melodieAscultata;
-                rc += melodieAscultata;
+                rc += m;
+                rc += m;
             }
         }
     }

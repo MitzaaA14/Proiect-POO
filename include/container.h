@@ -21,7 +21,9 @@ private:
 
 public:
     Container<T>& operator<<(const T& element) {
-        const_cast<T&>(element).setId(++current_id);
+        if (element.getId() == 0) {
+            const_cast<T&>(element).setId(++current_id);
+        }
 
         data.push_back(element);
         return *this;
@@ -33,6 +35,18 @@ public:
             return true;
         }
         return false;
+    }
+
+    std::vector<T> getUnice() {
+        std::vector<T> unice = data;
+
+        std::sort(unice.begin(), unice.end());
+
+        auto last = std::unique(unice.begin(), unice.end());
+
+        unice.erase(last, unice.end());
+
+        return unice;
     }
 
     void resetIterator() {

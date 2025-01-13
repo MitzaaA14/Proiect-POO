@@ -66,6 +66,8 @@ int main() {
                 continue;
             }
 
+
+
             a.asculta(*m);
         }
 
