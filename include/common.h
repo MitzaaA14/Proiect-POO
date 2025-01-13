@@ -13,6 +13,8 @@ class Nume {
 
         virtual ~Nume() {}
 
+        const std::string& getNume() const { return nume; }
+
         void setId(const int setid) { this->id = setid; }
         int getId() const { return id; }
 

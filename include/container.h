@@ -53,6 +53,7 @@ public:
         index = 0;
     }
 
+
     std::optional<T> cautaId(int id) const {
         auto it = std::find_if(data.begin(), data.end(), [&id](const T& item) {
             return item.getId() == id;
