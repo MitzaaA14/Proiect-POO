@@ -18,7 +18,7 @@ void Recomandari::printRecomandari() {
     Container<Ascultator> ascultatori = Spotify::Instance()->getAscultatori();
     Ascultator altAscultator;
 
-    for(auto m : melodiiAscultate.getUnice() ) {
+    for(const auto& m : melodiiAscultate.getUnice() ) {
         ascultatori.resetIterator();
 
         while(ascultatori >> altAscultator) {
