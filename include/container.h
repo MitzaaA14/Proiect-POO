@@ -53,17 +53,6 @@ public:
         index = 0;
     }
 
-    std::optional<T> cautaNume(const std::string& name) const {
-        auto it = std::find_if(data.begin(), data.end(), [&name](const T& item) {
-            return item.getNume() == name;
-        });
-
-        if (it != data.end()) {
-            return *it; 
-        }
-        return std::nullopt;
-    }
-
     std::optional<T> cautaId(int id) const {
         auto it = std::find_if(data.begin(), data.end(), [&id](const T& item) {
             return item.getId() == id;
